@@ -71,5 +71,20 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, Long> implement
         currentStudent.getBooks().remove(book);
         return studentRepository.save(currentStudent);
     }
+
+    @Override
+    public Student saveOrUpdate(Student entity) {
+        Student student = studentRepository.findById(entity.getId()).orElse(null);
+        Student studentUpdated = mapToStudent(entity, student);
+        return super.saveOrUpdate(studentUpdated);
+    }
+
+    private Student mapToStudent(Student source, Student destination){
+        destination.setFirstname(source.getFirstname());
+        destination.setLastname(source.getLastname());
+        destination.setEmail(source.getEmail());
+        destination.setSemester(source.getSemester());
+        return destination;
+    }
 }
 
