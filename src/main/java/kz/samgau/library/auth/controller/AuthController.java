@@ -26,7 +26,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
 
     @PostMapping("/signin")
-    public ResponseEntity<LoginResponseDTO> signin(@RequestBody LoginRequestDTO student) throws Exception {
+    public ResponseEntity<LoginResponseDTO> signIn(@RequestBody LoginRequestDTO student) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(student.getStudentId(), student.getPassword()));
 
@@ -39,7 +39,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<HashMap<String, String>> signup(@RequestBody StudentDTO studentDTO) {
+    public ResponseEntity<HashMap<String, String>> signUp(@RequestBody StudentDTO studentDTO) {
         Student student = studentService.createStudent(studentDTO);
 
         HashMap<String, String> response = new HashMap<>();
