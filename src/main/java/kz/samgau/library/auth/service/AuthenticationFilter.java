@@ -47,7 +47,6 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     }
 
     private String parseUsernameFromHeader(HttpServletRequest request) {
-        String username = request.getHeader("Authorization");
-        return username;
+        return request.getHeader("Authorization");
     }
 }
